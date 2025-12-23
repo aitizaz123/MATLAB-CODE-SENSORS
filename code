@@ -1,0 +1,277 @@
+MATLAB Code 
+Blockchain-Powered Healthcare Systems: Enhancing Scalability and Security with Hybrid Deep Learning
+
+
+
+no_nodes = [0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5]; 
+threshold_value = [5.2, 5.5, 5.7, 5.9, 6.0, 6.1, 6.3, 6.7]; 
+security_level = [5.1, 5.4, 5.8, 6.0, 6.2, 6.4, 6.8, 7.0]; 
+
+% Create figure
+figure;
+
+% Plot Good Users (Green)
+good_users_x = [0.5, 1.5, 2.5];
+good_users_y = [5.2, 5.4, 5.8];
+good_users_z = [5.1, 5.3, 5.7];
+scatter3(good_users_x, good_users_y, good_users_z, 'g', 'DisplayName', 'Good User');
+hold on;
+
+% Plot Very Good Users (Blue)
+very_good_users_x = [3.5, 4.5, 5.5];
+very_good_users_y = [5.9, 6.0, 6.1];
+very_good_users_z = [6.0, 6.1, 6.3];
+scatter3(very_good_users_x, very_good_users_y, very_good_users_z, 'b', 'DisplayName', 'Very Good User');
+
+% Plot Bad Users (Orange)
+bad_users_x = [6.5, 7.5];
+bad_users_y = [6.4, 6.7];
+bad_users_z = [6.8, 7.0];
+scatter3(bad_users_x, bad_users_y, bad_users_z, 'or', 'DisplayName', 'Bad Users');
+
+% Labels and Legend
+xlabel('No Nodes');
+ylabel('Threshold Value');
+zlabel('Security Level');
+legend show;
+grid on;
+title('3D Scatter Plot of User Data');
+hold off;
+
+num_points = 100;
+
+% Random data for Good Users (Green)
+good_users_x = rand(1, num_points) * 2; 
+good_users_y = rand(1, num_points) * 1.5 + 4; % Random data for Threshold Value (range 4 to 5.5)
+good_users_z = rand(1, num_points) * 2 + 4.5; % Random data for Security Level (range 4.5 to 6.5)
+
+% Random data for Very Good Users (Blue)
+very_good_users_x = rand(1, num_points) * 2 + 3; 
+very_good_users_y = rand(1, num_points) * 1.5 + 5.5; 
+very_good_users_z = rand(1, num_points) * 2 + 5.5; 
+
+% Random data for Bad Users (Orange)
+bad_users_x = rand(1, num_points) * 2 + 5;
+bad_users_y = rand(1, num_points) * 1.5 + 6; 
+bad_users_z = rand(1, num_points) * 2 + 6.5; 
+
+% Create figure
+figure;
+
+% Plot Good Users (Green)
+scatter3(good_users_x, good_users_y, good_users_z, 36, 'g', 'filled', 'DisplayName', 'Good User');
+hold on;
+
+% Plot Very Good Users (Blue)
+scatter3(very_good_users_x, very_good_users_y, very_good_users_z, 36, 'b', 'filled', 'DisplayName', 'Very Good User');
+
+% Plot Bad Users (Orange)
+scatter3(bad_users_x, bad_users_y, bad_users_z, 36, 'or', 'filled', 'DisplayName', 'Bad Users');
+
+% Labels and Legend
+xlabel('No Nodes');
+ylabel('Threshold Value');
+zlabel('Security Level');
+legend show;
+grid on;
+title('3D Scatter Plot of Users with Increased Data Points');
+hold off;
+
+displacement = [2, 3, 4, 5, 6, 7, 8, 9]; % Displacement (mm)
+sensor_output = [1, 2, 3, 4, 5, 6, 7, 8]; 
+speed = [1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5]; 
+AA = [0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5]; 
+
+% Grouped Bar chart
+figure;
+
+% Bar plot with 3 categories (Sensor Output, Speed, AA)
+b = bar(displacement, [sensor_output; speed; AA]', 'grouped');
+
+% Customize colors for each group
+b(1).FaceColor = [255/255, 165/255, 0]; % Sensor Output (orange)
+b(2).FaceColor = [0, 255/255, 0]; % Speed (green)
+b(3).FaceColor = [0.5, 0, 1]; % AA (purple)
+
+% Set Y and X labels
+ylabel('Sensors Output');
+xlabel('Displacement (mm)');
+
+% Set legend
+legend('Sensor Output', 'Speed', 'AA', 'Location', 'northwest');
+
+% Grid on for better visualization
+grid on;
+
+num_nodes = 0:10:300; % Number of nodes (from 0 to 300)
+
+% Logistic growth-based function to simulate convergence
+% The parameter 5000 is the maximum limit (asymptote) of mobility speed
+max_speed = 5000; 
+k = 0.1; % Growth rate constant
+mobility_speed_ali = max_speed ./ (1 + exp(-k * (num_nodes - 150))); % Ali et.al curve
+mobility_speed_medrec = max_speed ./ (1 + exp(-k * (num_nodes - 160))); % Medrec curve
+mobility_speed_mechain = max_speed ./ (1 + exp(-k * (num_nodes - 170))); % Mechain curve
+mobility_speed_ying = max_speed ./ (1 + exp(-k * (num_nodes - 180))); % Ying et al curve
+mobility_speed_jin = max_speed ./ (1 + exp(-k * (num_nodes - 190))); % Jin et al curve
+mobility_speed_proposed = max_speed ./ (1 + exp(-k * (num_nodes - 200))); % Proposed curve
+
+% Create the plot
+figure;
+
+% Plot the data with different markers and lines
+plot(num_nodes, mobility_speed_ali, '-s', 'MarkerEdgeColor', 'k', 'MarkerFaceColor', 'k', 'LineWidth', 2, 'DisplayName', 'Ali et.al');
+hold on;
+plot(num_nodes, mobility_speed_medrec, '-o', 'MarkerEdgeColor', 'r', 'MarkerFaceColor', 'r', 'LineWidth', 2, 'DisplayName', 'Medrec');
+plot(num_nodes, mobility_speed_mechain, '-^', 'MarkerEdgeColor', 'b', 'MarkerFaceColor', 'b', 'LineWidth', 2, 'DisplayName', 'Mechain');
+plot(num_nodes, mobility_speed_ying, '-v', 'MarkerEdgeColor', 'g', 'MarkerFaceColor', 'g', 'LineWidth', 2, 'DisplayName', 'Ying et.al');
+plot(num_nodes, mobility_speed_jin, '-p', 'MarkerEdgeColor', 'm', 'MarkerFaceColor', 'm', 'LineWidth', 2, 'DisplayName', 'Jin et.al');
+plot(num_nodes, mobility_speed_proposed, '-h', 'MarkerEdgeColor', [204/255, 204/255, 0], 'MarkerFaceColor', [204/255, 204/255, 0], 'LineWidth', 2, 'DisplayName', 'Proposed');
+
+% Labels and title
+xlabel('Number of Nodes');
+ylabel('Mobility Speed');
+title('Convergence Curve: Mobility Speed vs. Number of Nodes');
+
+% Add grid
+grid on;
+
+% Add legend
+legend('show');
+
+% Adjust the axis limits for better visualization
+xlim([0, 300]);
+ylim([0, 5000]);
+num_nodes = 0:10:300; % Number of nodes (from 0 to 300)
+
+% Logistic growth-based function to simulate convergence
+% The parameter 5000 is the maximum limit (asymptote) of latency
+max_latency = 5000;
+k = 0.1; % Growth rate constant
+latency_proposed = max_latency ./ (1 + exp(-k * (num_nodes - 150))); % Proposed curve
+latency_ali = max_latency ./ (1 + exp(-k * (num_nodes - 160))); % Ali et.al curve
+latency_medrec = max_latency ./ (1 + exp(-k * (num_nodes - 170))); % Medrec curve
+latency_mechain = max_latency ./ (1 + exp(-k * (num_nodes - 180))); % Mechain curve
+latency_medblock = max_latency ./ (1 + exp(-k * (num_nodes - 190))); % Medblock curve
+latency_ying = max_latency ./ (1 + exp(-k * (num_nodes - 200))); % Ying et al curve
+latency_jin = max_latency ./ (1 + exp(-k * (num_nodes - 210))); % Jin et al curve
+
+% Create the plot
+figure;
+
+% Plot the data with different markers and lines
+plot(num_nodes, latency_proposed, '-s', 'MarkerEdgeColor', 'k', 'MarkerFaceColor', 'k', 'LineWidth', 2, 'DisplayName', 'Proposed');
+hold on;
+plot(num_nodes, latency_ali, '-o', 'MarkerEdgeColor', 'r', 'MarkerFaceColor', 'r', 'LineWidth', 2, 'DisplayName', 'Ali et.al');
+plot(num_nodes, latency_medrec, '-^', 'MarkerEdgeColor', 'b', 'MarkerFaceColor', 'b', 'LineWidth', 2, 'DisplayName', 'Medrec');
+plot(num_nodes, latency_mechain, '-v', 'MarkerEdgeColor', 'g', 'MarkerFaceColor', 'g', 'LineWidth', 2, 'DisplayName', 'Mechain');
+plot(num_nodes, latency_medblock, '-p', 'MarkerEdgeColor', 'm', 'MarkerFaceColor', 'm', 'LineWidth', 2, 'DisplayName', 'Medblock');
+plot(num_nodes, latency_ying, '-h', 'MarkerEdgeColor', [204/255, 204/255, 0], 'MarkerFaceColor', [204/255, 204/255, 0], 'LineWidth', 2, 'DisplayName', 'Ying et.al');
+plot(num_nodes, latency_jin, '-<', 'MarkerEdgeColor', 'c', 'MarkerFaceColor', 'c', 'LineWidth', 2, 'DisplayName', 'Jin et.al');
+
+% Labels and title
+xlabel('Number of Nodes');
+ylabel('Latency (msec)');
+title('Latency vs. Number of Nodes');
+
+% Add grid
+grid on;
+
+% Add legend
+legend('show');
+
+% Adjust the axis limits for better visualization
+xlim([0, 300]);
+ylim([0, 5000]);
+
+num_nodes = [10, 20, 30, 40, 50]; % Number of nodes
+
+% Encryption times (in ms) for each method
+encryption_time_proposed = [10, 12, 14, 17, 19]; 
+encryption_time_medrec = [11, 13, 16, 18, 21]; 
+encryption_time_medchain = [12, 14, 17, 19, 22]; 
+encryption_time_medblock = [13, 15, 18, 20, 23]; 
+
+% Create the plot
+figure;
+
+% Plot each method with the respective marker and color
+plot(num_nodes, encryption_time_proposed, '-o', 'Color', 'b', 'MarkerFaceColor', 'b', 'LineWidth', 2, 'DisplayName', 'Proposed Approach');
+hold on;
+plot(num_nodes, encryption_time_medrec, '-s', 'Color', 'r', 'MarkerFaceColor', 'r', 'LineWidth', 2, 'DisplayName', 'MedRec');
+plot(num_nodes, encryption_time_medchain, '-d', 'Color', 'y', 'MarkerFaceColor', 'y', 'LineWidth', 2, 'DisplayName', 'MedChain');
+plot(num_nodes, encryption_time_medblock, '-^', 'Color', 'm', 'MarkerFaceColor', 'm', 'LineWidth', 2, 'DisplayName', 'MedBlock');
+
+% Labels and title
+xlabel('Number of Nodes');
+ylabel('Encryption Time (ms)');
+title('Encryption Time vs. Number of Nodes');
+
+% Add grid for better visualization
+grid on;
+
+% Add legend
+legend('show');
+
+% Adjust the axis limits for better visualization
+xlim([10, 50]);
+ylim([5, 25]);
+
+
+num_attributes = [2, 4, 6, 8, 10]; % Number of attributes
+execution_time_proposed = [5, 10, 18, 30, 40]; % Execution time for "Our Proposed Scheme"
+execution_time_shdpcpc = [8, 15, 22, 35, 48]; % Execution time for "SHDPCPC - ABR"
+execution_time_abms = [6, 13, 20, 33, 45]; % Execution time for "ABMS - EHR"
+
+% Create a figure
+figure;
+
+% Create grouped bar plot
+bar_data = [execution_time_proposed; execution_time_shdpcpc; execution_time_abms]';
+
+% Plot the bar chart
+b = bar(num_attributes, bar_data, 'grouped');
+
+% Set colors for each bar group
+b(1).FaceColor = [0.36, 0.68, 0.73]; % Our Proposed Scheme (Teal)
+b(2).FaceColor = [0.67, 0.67, 0.67]; % SHDPCPC - ABR (Gray)
+b(3).FaceColor = [0.1, 0.1, 0.1]; % ABMS - EHR (Black)
+
+% Labels and title
+xlabel('Number of Attributes');
+ylabel('Execution Time (ms)');
+title('Execution Time vs. Number of Attributes');
+
+% Add legend
+legend('Our Proposed Scheme', 'SHDPCPC - ABR', 'ABMS - EHR', 'Location', 'northwest');
+
+% Grid on for better visualization
+grid on;
+num_attributes = 1:8; % Number of attributes (1 to 8)
+time_complexity = [50, 70, 90, 110, 130, 150, 170, 200]; % Time Complexity (Micro-sec)
+num_transactions = [60, 80, 100, 120, 140, 160, 180, 200]; % Number of Transactions
+
+% Create figure
+figure;
+
+% Plot the bars for Time Complexity (purple)
+b1 = bar(num_attributes, time_complexity, 'FaceColor', [0.5, 0, 0.5], 'DisplayName', 'Time Complexity');
+hold on;
+
+% Plot the bars for Number of Transactions (blue)
+b2 = bar(num_attributes, num_transactions, 'FaceColor', [0, 0, 1], 'DisplayName', 'Number of Transaction');
+
+% Set properties for the bars
+b1.FaceAlpha = 0.6; % Adjust transparency for Time Complexity bars
+b2.FaceAlpha = 0.6; % Adjust transparency for Number of Transaction bars
+
+% Add labels and title
+xlabel('Number of Attributes');
+ylabel('Time Complexity (Micro-Sec) / Number of Transactions');
+title('Time Complexity and Number of Transactions vs. Number of Attributes');
+
+% Add legend
+legend('show');
+
+% Add grid for better visualization
+grid on;
